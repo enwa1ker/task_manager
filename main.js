@@ -227,7 +227,6 @@ async function toggleComplete(taskId, completed) {
         console.error('Ошибка во время обновления задачи:', error);
     }
 }
-
 // Функция для изменения описания и названия задачи
 function editTask(taskId) {
     const newTitle = prompt('Введите новое название задачи:');
@@ -305,6 +304,11 @@ async function updateTaskList() {
             const bodyElement = document.createElement('p');
             bodyElement.textContent = task.body;
 
+            // Применяем класс стиля в зависимости от состояния 'completed'
+            if (task.completed) {
+                taskDiv.classList.add('completed-task');
+            }
+
             const completeButton = createButton('Complete', () => toggleComplete(task.id, !task.completed));
             const editButton = createButton('Edit', () => editTask(task.id));
             const deleteButton = createButton('Delete', () => deleteTask(task.id));
@@ -325,7 +329,6 @@ async function updateTaskList() {
         console.error('Ошибка во время обновления списка тасков:', error);
     }
 }
-
 /////////////////////////////
 document.getElementById('addTaskBtn').addEventListener('click', function () {
     const addTaskModal = document.getElementById('addTaskModal');
@@ -410,5 +413,47 @@ function clearTaskInputs() {
         taskBodyInput.value = '';
     } else {
         console.error('Ошибка: Элементы для ввода не найдены.');
+    }
+}
+/////////////////
+// Обработчик событий для кнопки "Показать выполненные"
+document.getElementById('filterCompletedBtn').addEventListener('click', function () {
+    filterTasks(true);
+});
+
+// Обработчик событий для кнопки "Показать не выполненные"
+document.getElementById('filterNotCompletedBtn').addEventListener('click', function () {
+    filterTasks(false);
+});
+
+// Обработчик событий для кнопки "Сбросить фильтры"
+document.getElementById('resetFiltersBtn').addEventListener('click', function () {
+    resetFilters();
+});
+
+// Функция для фильтрации задач
+function filterTasks(completed) {
+    const tasksContainer = document.getElementById('tasksContainer');
+    if (tasksContainer) {
+        const taskDivs = tasksContainer.querySelectorAll('.task-card');
+        taskDivs.forEach(taskDiv => {
+            const isCompleted = taskDiv.classList.contains('completed-task');
+            if (isCompleted === completed) {
+                taskDiv.style.display = 'block';
+            } else {
+                taskDiv.style.display = 'none';
+            }
+        });
+    }
+}
+
+// Функция для сброса фильтров
+function resetFilters() {
+    const tasksContainer = document.getElementById('tasksContainer');
+    if (tasksContainer) {
+        const taskDivs = tasksContainer.querySelectorAll('.task-card');
+        taskDivs.forEach(taskDiv => {
+            taskDiv.style.display = 'block';
+        });
     }
 }

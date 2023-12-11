@@ -19,7 +19,17 @@
         </nav>
     </header>
 
-<!--модальное окно для входа-->
+    <div id="tasksPage" style="display: none;">
+        <button id="addTaskBtn">Добавить задачу</button>
+        <div class="button-container">
+            <button id="filterCompletedBtn">выполненные</button>
+            <button id="filterNotCompletedBtn">не выполненные</button>
+            <button id="resetFiltersBtn">Сбросить</button>
+        </div>
+        <div id="tasksContainer"></div>
+    </div>
+
+    <!--модальное окно для входа-->
     <div class="wrapper" id="wrapper">
         <span class="icon-close"><ion-icon name="close-outline"></ion-icon></span>
         <div class="form-box login">
@@ -83,11 +93,6 @@
     </div>
 
 
-    <div id="tasksPage" style="display: none;">
-        <h2>Your Tasks</h2>
-        <button id="addTaskBtn">Добавить задачу</button>
-        <div id="tasksContainer"></div>
-    </div>
 
     <div id="addTaskModal" class="modal">
         <div class="modal-content">
