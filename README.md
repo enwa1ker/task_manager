@@ -33,13 +33,13 @@ These instructions will help you get a copy of the project up and running on you
     cd task_manager
     ```
 
-3. Install dependencies:
+4. Install dependencies:
 
     ```bash
     npm install
     ```
 
-4. Start the application:
+5. Start the application:
 
     ```bash
     npm start
