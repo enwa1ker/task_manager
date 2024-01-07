@@ -6,6 +6,7 @@ const iconClose = document.querySelector('.icon-close');
 const tasksPage = document.querySelector('.tasks-page');
 
 //register
+
 registerLink.addEventListener('click', () => {
     wrapper.classList.add('active');
 });
